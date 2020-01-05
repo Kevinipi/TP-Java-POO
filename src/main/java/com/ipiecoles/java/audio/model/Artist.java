@@ -8,6 +8,10 @@ import javax.persistence.Id;
 @Table(name="Album")
 
 public abstract class Artist {
-    @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
+
+    //Contructor
+    public Artist() {
+    }
+    //Getter and Setter
+
 }

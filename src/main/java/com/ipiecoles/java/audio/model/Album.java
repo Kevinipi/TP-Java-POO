@@ -9,4 +9,8 @@ import javax.persistence.Table;
 public abstract class Album {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+    public Album() {
+    }
 }
+
