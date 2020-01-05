@@ -15,9 +15,11 @@ import java.util.List;
 @Repository
 public interface ArtistRepository extends PagingAndSortingRepository <Artist, Long> {
 
-   // Artist findById (String artistid);
-
-    //Récupération de manière paginée
+/**
+ * @return Ajouter une méthode permettant de récupérer de manière paginée les artistes dont le nom contient une chaine
+ * de caractère sans prendre en compte la casse.
+ */
+    Artist findByArtistId (String artistid);
     //Page<Artist> findByNomIgnoreCase (String name, Pageable pageable);
 
 }
