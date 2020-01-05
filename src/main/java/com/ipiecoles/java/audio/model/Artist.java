@@ -1,8 +1,10 @@
 package com.ipiecoles.java.audio.model;
+
 import javax.persistence.*;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.util.Objects;
 
 @Entity
 @Table(name="Album")
@@ -12,12 +14,15 @@ public abstract class Artist {
 
     private Long artistid;
 
-    private String nom;
+    private String name;
 
     //Contructor
+        public Artist() {
+        }
+
         public Artist(Long id, String nom) {
             this.artistid = id;
-            this.nom = nom;
+            this.name = nom;
         }
     //Getter and Setter
 
@@ -30,11 +35,28 @@ public abstract class Artist {
         }
 
         public String getNom() {
-            return nom;
+            return name;
         }
 
         public void setNom(String nom) {
-            this.nom = nom;
+            this.name = nom;
         }
     //End Constructor
+
+ /*
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Artist artist = (Artist) o;
+        return Objects.equals(artistid, artist.artistid) &&
+                Objects.equals(name, artist.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(artistid, name);
+    }
+
+ */
 }
