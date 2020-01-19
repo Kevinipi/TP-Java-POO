@@ -13,8 +13,9 @@ public interface AlbumRepository extends PagingAndSortingRepository <Album, Long
 
 /**
 * @return Ajouter une méthode permettant de rechercher un album en fonction de son nom
-*/
-    Album findByAlbumid (Integer Albumid);
+ * @param Artistid
+ */
+    Album findByArtistid (int Artistid);
 
     List<Album> findByTitle (String title);
 }
