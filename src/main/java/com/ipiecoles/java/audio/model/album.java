@@ -3,9 +3,9 @@ package com.ipiecoles.java.audio.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name="Album")
+@Table(name="album")
 
-public abstract class Album {
+public abstract class album {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private Long albumid;
@@ -15,7 +15,7 @@ public abstract class Album {
     private Long artistid;
 
     //Constructor
-        public Album(Long albumid, String title, Long artistid) {
+        public album(Long albumid, String title, Long artistid) {
             this.albumid = albumid;
             this.title = title;
             this.artistid = artistid;

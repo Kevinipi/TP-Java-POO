@@ -7,9 +7,9 @@ import javax.persistence.Id;
 import java.util.Objects;
 
 @Entity
-@Table(name="Album")
+@Table(name="artist")
 
-public abstract class Artist {
+public abstract class artist {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private Long artistid;
@@ -17,10 +17,10 @@ public abstract class Artist {
     private String name;
 
     //Contructor
-        public Artist() {
+        public artist() {
         }
 
-        public Artist(Long id, String nom) {
+        public artist(Long id, String nom) {
             this.artistid = id;
             this.name = nom;
         }

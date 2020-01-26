@@ -20,6 +20,7 @@ public class MyRunner implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         System.out.println(artistRepository);
-        System.out.println(albumRepository.findByArtistid(1));
+        //System.out.println(albumRepository.findByArtistid(1));
+        System.out.println(albumRepository.findByTitle("For Those About To Rock We Salute You"));
     }
 }
