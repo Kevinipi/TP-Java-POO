@@ -5,23 +5,29 @@ import javax.persistence.*;
 @Entity
 @Table(name="album")
 
-public abstract class album {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-
+public class Album {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long albumid;
 
     private String title;
 
+    @OneToMany
     private Long artistid;
 
     //Constructor
-        public album(Long albumid, String title, Long artistid) {
-            this.albumid = albumid;
-            this.title = title;
-            this.artistid = artistid;
+
+        public Album(){
+            super();
         }
 
-        //Getter and Setter
+    public Album (Long albumid, String title, Long artistid) {
+        this.albumid = albumid;
+        this.title = title;
+        this.artistid = artistid;
+    }
+
+    //Getter and Setter
         public Long getAlbumid() {
             return albumid;
         }

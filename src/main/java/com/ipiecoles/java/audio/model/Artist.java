@@ -9,18 +9,19 @@ import java.util.Objects;
 @Entity
 @Table(name="artist")
 
-public abstract class artist {
+public abstract class Artist {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 
+    //@ManyToOne
     private Long artistid;
 
     private String name;
 
     //Contructor
-        public artist() {
+        public Artist() {
         }
 
-        public artist(Long id, String nom) {
+        public Artist(Long id, String nom) {
             this.artistid = id;
             this.name = nom;
         }
@@ -43,7 +44,7 @@ public abstract class artist {
         }
     //End Constructor
 
- /*
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -58,5 +59,4 @@ public abstract class artist {
         return Objects.hash(artistid, name);
     }
 
- */
 }
