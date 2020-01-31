@@ -8,17 +8,16 @@ import javax.persistence.*;
 public class Album {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Long albumid;
 
     private String title;
 
-    @OneToMany
     private Long artistid;
 
     //Constructor
 
         public Album(){
-            super();
         }
 
     public Album (Long albumid, String title, Long artistid) {

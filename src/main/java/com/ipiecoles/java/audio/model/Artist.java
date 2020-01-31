@@ -12,7 +12,6 @@ import java.util.Objects;
 public abstract class Artist {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 
-    //@ManyToOne
     private Long artistid;
 
     private String name;

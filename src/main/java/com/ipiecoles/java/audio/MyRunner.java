@@ -17,10 +17,10 @@ public class MyRunner implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        //System.out.println(artistRepository);
+        System.out.println(albumRepository.findAll());
         //System.out.println(albumRepository.findByArtistid(1));
-        //System.out.println(albumRepository.findBytitle("For Those About To Rock We Salute You"));
-        System.out.println(albumRepository.findByTitle("For Those About To Rock We Salute You"));
+       //System.out.println(albumRepository.findNameByTitle("Balls to the Wall"));
+        //System.out.println(artistRepository.findByNomIgnoreCase("AC/DC"));
 
     }
 }
