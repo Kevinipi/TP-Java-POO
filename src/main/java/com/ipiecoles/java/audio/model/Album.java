@@ -1,6 +1,7 @@
 package com.ipiecoles.java.audio.model;
 
 import javax.persistence.*;
+import java.util.Optional;
 
 @Entity
 @Table(name="album")
@@ -26,8 +27,11 @@ public class Album {
         this.artistid = artistid;
     }
 
+    //End Constructor
+
+
     //Getter and Setter
-        public Long getAlbumid() {
+        public Long getAlbumid(int i) {
             return albumid;
         }
 
@@ -50,6 +54,7 @@ public class Album {
         public void setArtistid(Long artistid) {
             this.artistid = artistid;
         }
-    //End Constructor
+
+    //End Getter and Setter
 }
 

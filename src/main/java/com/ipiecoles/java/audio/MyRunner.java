@@ -1,10 +1,14 @@
 package com.ipiecoles.java.audio;
 
+import com.ipiecoles.java.audio.model.Album;
 import com.ipiecoles.java.audio.repository.AlbumRepository;
 import com.ipiecoles.java.audio.repository.ArtistRepository;
+import org.hibernate.validator.constraints.br.TituloEleitoral;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+
+import java.util.Collections;
 
 @Component
 public class MyRunner implements CommandLineRunner {
@@ -17,10 +21,8 @@ public class MyRunner implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        System.out.println(albumRepository.findAll());
-        //System.out.println(albumRepository.findByArtistid(1));
-       //System.out.println(albumRepository.findNameByTitle("Balls to the Wall"));
-        //System.out.println(artistRepository.findByNomIgnoreCase("AC/DC"));
+        //System.out.println(albumRepository.findByTitle("Facelift").get(3));
+        System.out.println(albumRepository.findTitleByalbumid((long) 1).getTitle());
 
     }
 }
