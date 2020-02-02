@@ -21,6 +21,8 @@ public interface AlbumRepository extends CrudRepository<Album, Long> {
 
     Album findTitleByalbumid (Long id);
     Album findTitleByTitle (String title);
+    //List <Album> findAllTitle(String s);
+
     //Album findAllById(int i);
     //Long  findAllById(int i);
 }

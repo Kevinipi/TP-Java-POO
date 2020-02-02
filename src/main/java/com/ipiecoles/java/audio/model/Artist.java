@@ -9,7 +9,7 @@ import java.util.Objects;
 @Entity
 @Table(name="artist")
 
-public /*abstract*/ class Artist {
+public abstract class Artist {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private Long artistid;

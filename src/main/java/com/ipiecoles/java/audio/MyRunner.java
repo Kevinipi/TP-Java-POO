@@ -24,7 +24,9 @@ public class MyRunner implements CommandLineRunner {
         //System.out.println(albumRepository.findByTitle("Facelift").get(3));
         System.out.println(albumRepository.findTitleByalbumid((long) 8).getTitle());
         System.out.println(albumRepository.findTitleByTitle("Balls to the Wall").getTitle());
+        //System.out.println(albumRepository.findAllTitle("").get(1));
         //System.out.println(albumRepository.findAllById(2).getClass());
+        System.out.println(artistRepository.findNameContainStringIgnoreCase("AC/DC"));
 
     }
 }
