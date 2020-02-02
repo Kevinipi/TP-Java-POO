@@ -22,7 +22,9 @@ public class MyRunner implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         //System.out.println(albumRepository.findByTitle("Facelift").get(3));
-        System.out.println(albumRepository.findTitleByalbumid((long) 1).getTitle());
+        System.out.println(albumRepository.findTitleByalbumid((long) 8).getTitle());
+        System.out.println(albumRepository.findTitleByTitle("Balls to the Wall").getTitle());
+        //System.out.println(albumRepository.findAllById(2).getClass());
 
     }
 }
