@@ -5,32 +5,34 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.util.Objects;
+import java.util.List;
 
 @Entity
 @Table(name="artist")
 
-public abstract class Artist {
+public class Artist<artistid> {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 
-    private Long artistid;
-
     private String name;
+
+    @ManyToOne(targetEntity = Artist.class)
+    private List<Artist> artistid;
 
     //Contructor
         public Artist() {
         }
 
-        public Artist(Long id, String nom) {
+        public Artist(List<Artist> id, String nom) {
             this.artistid = id;
             this.name = nom;
         }
     //Getter and Setter
 
-        public Long getId() {
+        public List<Artist> getId() {
             return artistid;
         }
 
-        public void setId(Long id) {
+        public void setId(List<Artist> id) {
             this.artistid = id;
         }
 

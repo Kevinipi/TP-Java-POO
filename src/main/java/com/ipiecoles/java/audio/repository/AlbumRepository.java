@@ -2,10 +2,7 @@ package com.ipiecoles.java.audio.repository;
 
         import com.ipiecoles.java.audio.model.Album;
         import org.springframework.data.repository.CrudRepository;
-        import org.springframework.data.repository.PagingAndSortingRepository;
         import org.springframework.stereotype.Repository;
-
-        import java.util.List;
 
 @Repository
 public interface AlbumRepository extends CrudRepository<Album, Long> {
@@ -19,8 +16,11 @@ public interface AlbumRepository extends CrudRepository<Album, Long> {
 
    // List<Album> title = AlbumRepository.findByAlbumIdAndTitle (String title)
 
+    Iterable<Album> findAll ();
     Album findTitleByalbumid (Long id);
     Album findTitleByTitle (String title);
+    Album findTitleByNameOfArtist (String title);
+
     //List <Album> findAllTitle(String s);
 
     //Album findAllById(int i);
