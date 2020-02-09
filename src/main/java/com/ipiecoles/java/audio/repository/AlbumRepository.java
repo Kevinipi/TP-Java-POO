@@ -19,7 +19,7 @@ public interface AlbumRepository extends CrudRepository<Album, Long> {
     Iterable<Album> findAll ();
     Album findTitleByalbumid (Long id);
     Album findTitleByTitle (String title);
-    Album findTitleByNameOfArtist (String title);
+    //Album (String title);
 
     //List <Album> findAllTitle(String s);
 

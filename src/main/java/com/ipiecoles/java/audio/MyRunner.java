@@ -22,13 +22,16 @@ public class MyRunner implements CommandLineRunner {
 
     @Autowired
     private ArtistRepository artistRepository;
-    private Object Pageable;
+    //private Object title;
+    private String NameAlbum;
 
     @Override
     public void run(String... args) throws Exception {
         //System.out.println(albumRepository.findByTitle("Facelift").get(3));
-        System.out.println(albumRepository.findTitleByalbumid((long) 8).getTitle());
-        System.out.println(albumRepository.findTitleByNameOfArtist(""));
+        NameAlbum = albumRepository.findTitleByalbumid((long) 8).getTitle();
+        System.out.println("Le nom de l'album est : " + NameAlbum);
+        //System.out.println(albumRepository.findTitleByalbumid((long) 8).getTitle());
+        //System.out.println(albumRepository.findTitleByNameOfArtist(""));
         //System.out.println(albumRepository.findTitleByTitle("Balls to the Wall").getTitle());
 
     }
