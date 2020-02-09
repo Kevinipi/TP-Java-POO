@@ -1,8 +1,11 @@
 package com.ipiecoles.java.audio.repository;
 
         import com.ipiecoles.java.audio.model.Album;
+        import org.hibernate.validator.constraints.EAN;
         import org.springframework.data.repository.CrudRepository;
         import org.springframework.stereotype.Repository;
+
+        import java.util.List;
 
 @Repository
 public interface AlbumRepository extends CrudRepository<Album, Long> {
@@ -18,11 +21,6 @@ public interface AlbumRepository extends CrudRepository<Album, Long> {
 
     Iterable<Album> findAll ();
     Album findTitleByalbumid (Long id);
-    Album findTitleByTitle (String title);
-    //Album (String title);
 
-    //List <Album> findAllTitle(String s);
-
-    //Album findAllById(int i);
-    //Long  findAllById(int i);
+    List<Album> findAllTitle(Iterable<String> titles);
 }

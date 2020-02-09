@@ -2,6 +2,7 @@ package com.ipiecoles.java.audio;
 
 import com.ipiecoles.java.audio.repository.AlbumRepository;
 import com.ipiecoles.java.audio.repository.ArtistRepository;
+import org.hibernate.validator.constraints.Range;
 import org.hibernate.validator.constraints.br.TituloEleitoral;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -14,6 +15,8 @@ import com.ipiecoles.java.audio.model.Album;
 import javax.persistence.criteria.CriteriaBuilder;
 import java.awt.print.Pageable;
 import java.util.Collections;
+import java.util.List;
+
 @Component
 public class MyRunner implements CommandLineRunner {
 
@@ -24,15 +27,17 @@ public class MyRunner implements CommandLineRunner {
     private ArtistRepository artistRepository;
     //private Object title;
     private String NameAlbum;
+    private List<Album> AllAlbum;
 
     @Override
     public void run(String... args) throws Exception {
-        //System.out.println(albumRepository.findByTitle("Facelift").get(3));
+
+        //Find album by Id
         NameAlbum = albumRepository.findTitleByalbumid((long) 8).getTitle();
         System.out.println("Le nom de l'album est : " + NameAlbum);
-        //System.out.println(albumRepository.findTitleByalbumid((long) 8).getTitle());
-        //System.out.println(albumRepository.findTitleByNameOfArtist(""));
-        //System.out.println(albumRepository.findTitleByTitle("Balls to the Wall").getTitle());
 
+        //Find all Album
+        AllAlbum = (List<Album>) albumRepository.findAllTitle();
+        System.out.println(AllAlbum);
     }
 }
