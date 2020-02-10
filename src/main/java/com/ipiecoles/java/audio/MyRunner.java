@@ -37,7 +37,7 @@ public class MyRunner implements CommandLineRunner {
         System.out.println("Le nom de l'album est : " + NameAlbum);
 
         //Find all Album
-        AllAlbum = (List<Album>) albumRepository.findAllTitle();
+        AllAlbum = (List<Album>) albumRepository.findAllTitle(Collections.singleton(""));
         System.out.println(AllAlbum);
     }
 }
