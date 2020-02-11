@@ -6,6 +6,7 @@ import com.ipiecoles.java.audio.repository.ArtistRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,6 +22,7 @@ public class ArtistController {
 
     @Autowired
     private ArtistRepository artistRepository;
+
 
     /*1 - Afficher un artiste, puis erreur 404*/
     @RequestMapping(method = RequestMethod.GET, value = "/{id}")
@@ -45,6 +47,11 @@ public class ArtistController {
         @RequestParam("sortDirection") Sort.Direction sortDirection,
         @RequestParam("sortProperty") String sortProperty
     ){
-        return artistRepository.findByNameContaining(name,PageRequest.of(page, size, sortDirection, sortProperty));
-}
+        Page<Artist> artists =  artistRepository.findByNameContaining(name, PageRequest.of(page, size, sortDirection, sortProperty));
+
+        if(size < 1 || size > 50){ //permet que si un attaquant veux faire tomber notre site en augmentant la taille du nombre de page il ne pourra pas
+            throw new IllegalArgumentException("Le nombres d'élements est trop important ! Loupé ");
+        }
+        return artists;
+    }
 }

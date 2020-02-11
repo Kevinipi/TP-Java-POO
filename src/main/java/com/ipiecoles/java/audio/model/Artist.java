@@ -45,7 +45,7 @@ public class Artist {
 
     //Permet de dire qu'un artiste à plusieur album
     @OneToMany(mappedBy = "artistId")
-    @JsonIgnoreProperties("artistId")
+    @JsonIgnoreProperties("artistId") //Evite la boucle infinie
     private Set<Album> albums = new HashSet<>();
 
     public Set<Album> getAlbums() {
