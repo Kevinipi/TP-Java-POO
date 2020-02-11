@@ -4,9 +4,10 @@ import com.ipiecoles.java.audio.model.Artist;
 import com.ipiecoles.java.audio.repository.AlbumRepository;
 import com.ipiecoles.java.audio.repository.ArtistRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
-import com.ipiecoles.java.audio.security.GlobalExceptionHandler;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.Optional;
@@ -32,4 +33,18 @@ public class ArtistController {
         }
         throw new EntityNotFoundException("L'employé d'id "+idArtist+"n'existe pas ! ");
     }
+
+    /*2 - Rechercher un artist par son nom*/
+
+    @RequestMapping(method = RequestMethod.GET,value = "", params = "name")
+    public Page<Artist> getNameOfArtist (
+            @RequestParam("name") String name,
+        //@PathVariable("name") String name,
+        @RequestParam("page")Integer page,
+        @RequestParam("size") Integer size,
+        @RequestParam("sortDirection") Sort.Direction sortDirection,
+        @RequestParam("sortProperty") String sortProperty
+    ){
+        return artistRepository.findByNameContaining(name,PageRequest.of(page, size, sortDirection, sortProperty));
+}
 }
