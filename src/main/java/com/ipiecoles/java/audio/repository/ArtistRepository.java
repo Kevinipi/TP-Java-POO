@@ -9,17 +9,19 @@ import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import java.awt.print.Pageable;
+import java.util.Optional;
 
 
 @Repository
 public interface ArtistRepository extends PagingAndSortingRepository<Artist, Integer> {
+    Optional<Artist> findById(Long idArtist);
 
 /**
  * @return Ajouter une méthode permettant de récupérer de manière paginée les artistes dont le nom contient une chaine
  * de caractère sans prendre en compte la casse.
  */
     //Artist findByArtistidAndName (Integer artistid, String name);
-   // Page<Artist> findByNameContainingStringAndIgnoreCase(String Name, Pageable pageable);
+    // Page<Artist> findByNameContainingStringAndIgnoreCase(String Name, Pageable pageable);
 
     //Page<Artist> findAll(Pageable pageable);
 
@@ -28,4 +30,5 @@ public interface ArtistRepository extends PagingAndSortingRepository<Artist, Int
     //String findByNameContainingStringAndIgnoreCase(String s);
 
     //SpringDataWebProperties findByNomContainStringAndfIgnoreCase(String accept);
+
 }

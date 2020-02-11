@@ -4,49 +4,48 @@ import javax.persistence.*;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.swing.*;
 import java.util.Objects;
 import java.util.List;
 
 @Entity
 @Table(name="artist")
 
-public class Artist<artistid> {
+public class Artist {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private String name;
 
-    @ManyToOne(targetEntity = Artist.class)
-    private List<Artist> artistid;
+    private Long id;
 
     //Contructor
-        public Artist() {
-        }
 
-        public Artist(List<Artist> id, String nom) {
-            this.artistid = id;
-            this.name = nom;
-        }
+    public Artist() {
+        
+    }
+
     //Getter and Setter
 
-        public List<Artist> getId() {
-            return artistid;
-        }
+    public String getName() {
+        return name;
+    }
 
-        public void setId(List<Artist> id) {
-            this.artistid = id;
-        }
+    public void setName(String name) {
+        this.name = name;
+    }
 
-        public String getNom() {
-            return name;
-        }
+    public Long getId() {
+        return id;
+    }
 
-        public void setNom(String nom) {
-            this.name = nom;
-        }
+    public void setId(Long id) {
+        this.id = id;
+    }
+
 
     //End Constructor
 
-
+/*
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -60,5 +59,5 @@ public class Artist<artistid> {
     public int hashCode() {
         return Objects.hash(artistid, name);
     }
-
+*/
 }

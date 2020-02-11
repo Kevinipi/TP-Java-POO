@@ -33,11 +33,11 @@ public class MyRunner implements CommandLineRunner {
     public void run(String... args) throws Exception {
 
         //Find album by Id
-        NameAlbum = albumRepository.findTitleByalbumid((long) 8).getTitle();
+        NameAlbum = albumRepository.findTitleById((long) 8).getTitle();
         System.out.println("Le nom de l'album est : " + NameAlbum);
 
         //Find all Album
-        AllAlbum = (List<Album>) albumRepository.findAllTitle(Collections.singleton(""));
-        System.out.println(AllAlbum);
+       // AllAlbum = (List<Album>) albumRepository.findAllTitle(Collections.singleton(""));
+        //System.out.println(AllAlbum);
     }
 }

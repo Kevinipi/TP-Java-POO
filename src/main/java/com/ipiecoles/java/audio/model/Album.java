@@ -10,51 +10,46 @@ public class Album {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
-    private Long albumid;
+    private Long id;
 
     private String title;
 
-    @OneToMany
-    private List<Album> artistid;
+    private Long artistid;
 
     /* Constructor */
 
-        public Album(){
-        }
-
-    public Album (Long albumid, String title, List<Album> artistid) {
-        this.albumid = albumid;
-        this.title = title;
-        this.artistid = artistid;
+    public Album() {
+        super();
     }
 
     /* End Constructor */
 
 
     /* Getter and Setter */
-        public Long getAlbumid(int i) {
-            return albumid;
-        }
 
-        public void setAlbumid(Long albumid) {
-            this.albumid = albumid;
-        }
+    public Long getId() {
+        return id;
+    }
 
-        public String getTitle() {
-            return title;
-        }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-        public void setTitle(String title) {
-            this.title = title;
-        }
+    public String getTitle() {
+        return title;
+    }
 
-        public List<Album> getArtistid() {
-            return artistid;
-        }
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
-        public void setArtistid(List<Album> artistid) {
-            this.artistid = artistid;
-        }
+    public Long getArtistid() {
+        return artistid;
+    }
+
+    public void setArtistid (Long artistid) {
+        this.artistid = artistid;
+    }
 
     /* End Getter and Setter */
 }
