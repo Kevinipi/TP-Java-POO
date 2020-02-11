@@ -1,12 +1,13 @@
 package com.ipiecoles.java.audio.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.swing.*;
-import java.util.Objects;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name="artist")
@@ -14,9 +15,9 @@ import java.util.List;
 public class Artist {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 
-    private String name;
-
     private Long id;
+
+    private String name;
 
     //Contructor
 
@@ -42,7 +43,18 @@ public class Artist {
         this.id = id;
     }
 
+    //Permet de dire qu'un artiste à plusieur album
+    @OneToMany(mappedBy = "artistId")
+    @JsonIgnoreProperties("artistId")
+    private Set<Album> albums = new HashSet<>();
 
+    public Set<Album> getAlbums() {
+        return albums;
+    }
+
+    public void setAlbums(Set<Album> albums) {
+        this.albums = albums;
+    }
     //End Constructor
 
 /*

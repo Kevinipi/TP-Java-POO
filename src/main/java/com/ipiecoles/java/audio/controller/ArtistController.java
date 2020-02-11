@@ -23,20 +23,20 @@ public class ArtistController {
     private ArtistRepository artistRepository;
 
     /*1 - Afficher un artiste, puis erreur 404*/
-    @RequestMapping (method = RequestMethod.GET, value = "/{artistid}")
-    public Artist getArtistId (
-            @PathVariable("artistid") Long idArtist
+    @RequestMapping(method = RequestMethod.GET, value = "/{id}")
+    public Artist getArtistId(
+            @PathVariable("id") Long id
     ){
-        Optional<Artist> a = artistRepository.findById(idArtist);
+        Optional<Artist> a = artistRepository.findById(id);
         if (a.isPresent()){
             return a.get();
         }
-        throw new EntityNotFoundException("L'employé d'id "+idArtist+"n'existe pas ! ");
+        throw new EntityNotFoundException("L'employé d'id : "+ id +"n'existe pas ! ");
     }
 
     /*2 - Rechercher un artist par son nom*/
 
-    @RequestMapping(method = RequestMethod.GET,value = "", params = "name")
+    @RequestMapping(method = RequestMethod.GET, params = "name")
     public Page<Artist> getNameOfArtist (
             @RequestParam("name") String name,
         //@PathVariable("name") String name,

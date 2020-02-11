@@ -9,12 +9,13 @@ import java.util.List;
 public class Album {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private Long id;
 
     private String title;
 
-    private Long artistid;
+    @ManyToOne
+    @JoinColumn(name="artistId", nullable = false)
+    private Artist artistId;
 
     /* Constructor */
 
@@ -43,12 +44,12 @@ public class Album {
         this.title = title;
     }
 
-    public Long getArtistid() {
-        return artistid;
+    public Artist getArtistId() {
+        return artistId;
     }
 
-    public void setArtistid (Long artistid) {
-        this.artistid = artistid;
+    public void setArtistId(Artist artistId) {
+        this.artistId = artistId;
     }
 
     /* End Getter and Setter */

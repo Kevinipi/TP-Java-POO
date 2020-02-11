@@ -15,7 +15,7 @@ import java.util.Optional;
 
 @Repository
 public interface ArtistRepository extends JpaRepository<Artist, Long> {
-    Optional<Artist> findById(Long idArtist);
+    Optional<Artist> findById(Long id);
 
     Page<Artist> findByNameContaining(String name, Pageable pageable);
 
