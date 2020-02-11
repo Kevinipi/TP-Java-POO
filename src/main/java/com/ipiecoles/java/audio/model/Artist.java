@@ -21,7 +21,7 @@ public class Artist {
     //Contructor
 
     public Artist() {
-        
+
     }
 
     //Getter and Setter

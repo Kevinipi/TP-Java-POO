@@ -21,7 +21,7 @@ public class ArtistController {
     @Autowired
     private ArtistRepository artistRepository;
 
-    /*1 - Afficher un artiste*/
+    /*1 - Afficher un artiste, puis erreur 404*/
     @RequestMapping (method = RequestMethod.GET, value = "/{artistid}")
     public Artist getArtistId (
             @PathVariable("artistid") Long idArtist
