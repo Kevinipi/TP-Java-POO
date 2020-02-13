@@ -19,6 +19,14 @@ public interface ArtistRepository extends JpaRepository<Artist, Long> {
 
     Page<Artist> findByNameContaining(String name, Pageable pageable);
 
+    //Page<Artist> findAllArtists(String name, PageRequest of);
+
+    //Object findAll(String name, PageRequest of);
+
+    //Page<Artist> findByNameOrderByNameAsc(Pageable pageable);
+
+   // Page<Artist> findByNameOrderByNameAsc(PageRequest of);
+
 /**
  * @return Ajouter une méthode permettant de récupérer de manière paginée les artistes dont le nom contient une chaine
  * de caractère sans prendre en compte la casse.
