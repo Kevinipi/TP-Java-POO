@@ -8,6 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.data.domain.Pageable;
 
@@ -72,5 +73,16 @@ public class ArtistController {
             throw new IllegalArgumentException("Le nombres d'élements est trop important ! Loupé ");
         }
         return artists;
+    }
+
+    /*4. Création d’un artiste*/
+
+    @RequestMapping(method = RequestMethod.POST,
+                    consumes = MediaType.APPLICATION_JSON_VALUE,
+                    produces = MediaType.APPLICATION_JSON_VALUE)
+        public Artist createSameArtist (
+                @RequestBody Artist artist
+    ){
+        return artistRepository.save(artist);
     }
 }
