@@ -4,15 +4,16 @@ import com.ipiecoles.java.audio.model.Artist;
 import com.ipiecoles.java.audio.repository.AlbumRepository;
 import com.ipiecoles.java.audio.repository.ArtistRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.data.domain.Pageable;
+import org.springframework.web.context.request.WebRequest;
 
 import javax.persistence.EntityNotFoundException;
+import javax.xml.transform.sax.SAXResult;
 import java.util.Optional;
 
 @RestController
@@ -75,7 +76,7 @@ public class ArtistController {
         return artists;
     }
 
-    /*4. Création d’un artiste*/
+    /*4. Création d’un artiste + Exception 409 (à finir)*/
 
     @RequestMapping(method = RequestMethod.POST,
                     consumes = MediaType.APPLICATION_JSON_VALUE,
@@ -83,6 +84,10 @@ public class ArtistController {
         public Artist createSameArtist (
                 @RequestBody Artist artist
     ){
+            //throw new DataIntegrityViolationException("L'artist "+ artist + "existe déjà !" );
+       if(){;
+           throw new DataIntegrityViolationException("Le nom saisie existe déjà");
+       }
         return artistRepository.save(artist);
     }
 }

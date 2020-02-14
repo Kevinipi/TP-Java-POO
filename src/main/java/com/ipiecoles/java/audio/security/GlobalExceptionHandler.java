@@ -1,9 +1,11 @@
 package com.ipiecoles.java.audio.security;
 
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.client.HttpClientErrorException;
 
 import javax.persistence.EntityNotFoundException;
 
@@ -24,6 +26,14 @@ public class GlobalExceptionHandler {
     public String handleIllegalArgumentException (
             IllegalArgumentException illegalArgumentException){
         return illegalArgumentException.getMessage();
+    }
+
+/* Error 409 Exception*/
+    @ExceptionHandler (DataIntegrityViolationException.class)
+    @ResponseStatus(HttpStatus.CONFLICT)
+    public String handleDataIntegrityViolationException (
+            DataIntegrityViolationException dataIntegrityViolationException) {
+                return dataIntegrityViolationException.getMessage();
     }
 
 }
