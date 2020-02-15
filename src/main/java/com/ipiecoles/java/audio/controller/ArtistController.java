@@ -14,6 +14,7 @@ import org.springframework.web.context.request.WebRequest;
 
 import javax.persistence.EntityNotFoundException;
 import javax.xml.transform.sax.SAXResult;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -81,13 +82,25 @@ public class ArtistController {
     @RequestMapping(method = RequestMethod.POST,
                     consumes = MediaType.APPLICATION_JSON_VALUE,
                     produces = MediaType.APPLICATION_JSON_VALUE)
-        public Artist createSameArtist (
+        public Artist dataError (
                 @RequestBody Artist artist
     ){
+        List<Artist> listArtist = artistRepository.findByName("");
+
             //throw new DataIntegrityViolationException("L'artist "+ artist + "existe déjà !" );
-       if(){;
+       if(artist == listArtist) {
            throw new DataIntegrityViolationException("Le nom saisie existe déjà");
        }
+        return artistRepository.save(artist);
+    }
+
+    /* 5 - Modification d'un artiste */
+
+    @RequestMapping(method = RequestMethod.PUT, value = "/{id}")
+    public Artist modifArtist (
+        @PathVariable("id") Long idArtist,
+        @RequestBody Artist artist)
+    {
         return artistRepository.save(artist);
     }
 }

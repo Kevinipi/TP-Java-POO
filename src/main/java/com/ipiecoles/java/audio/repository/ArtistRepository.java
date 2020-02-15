@@ -10,6 +10,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.util.List;
 import java.util.Optional;
 
 
@@ -18,6 +19,8 @@ public interface ArtistRepository extends JpaRepository<Artist, Long> {
     Optional<Artist> findById(Long id);
 
     Page<Artist> findByNameContaining(String name, Pageable pageable);
+
+    List<Artist> findByName(String name);
 
     //Page<Artist> findAllArtists(String name, PageRequest of);
 

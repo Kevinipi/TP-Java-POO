@@ -31,7 +31,7 @@ public class GlobalExceptionHandler {
 /* Error 409 Exception*/
     @ExceptionHandler (DataIntegrityViolationException.class)
     @ResponseStatus(HttpStatus.CONFLICT)
-    public String handleDataIntegrityViolationException (
+    public String dataError (
             DataIntegrityViolationException dataIntegrityViolationException) {
                 return dataIntegrityViolationException.getMessage();
     }
