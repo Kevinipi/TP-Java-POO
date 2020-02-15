@@ -22,6 +22,8 @@ public interface ArtistRepository extends JpaRepository<Artist, Long> {
 
     List<Artist> findByName(String name);
 
+    void deleteById(Long id);
+
     //Page<Artist> findAllArtists(String name, PageRequest of);
 
     //Object findAll(String name, PageRequest of);

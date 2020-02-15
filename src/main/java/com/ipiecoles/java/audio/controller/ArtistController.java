@@ -110,12 +110,8 @@ public class ArtistController {
     @RequestMapping (method = RequestMethod.DELETE, value = "/{id}")
     //@ResponseStatus(HttpStatus.NO_CONTENT)
     public void  deleteArtist(
-            @PathVariable("id") Long idArtist)
+            @PathVariable("id") Long id)
     {
-        Optional<Artist> a = artistRepository.findById(idArtist);
-        if (a.isPresent()){
-           artistRepository.deleteById(idArtist);
-        }
-        throw new EntityNotFoundException("L'artiste avec l'id : "+ idArtist +"n'existe plus ! ");
+        artistRepository.deleteById(id);
 }
 }
