@@ -8,6 +8,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
@@ -38,7 +39,7 @@ public class ArtistController {
         if (a.isPresent()){
             return a.get();
         }
-        throw new EntityNotFoundException("L'employé d'id : "+ id +"n'existe pas ! ");
+        throw new EntityNotFoundException("L'artiste avec l'id : "+ id +"n'existe pas ! ");
     }
 
     /*2 - Rechercher un artist par son nom*/
@@ -103,4 +104,18 @@ public class ArtistController {
     {
         return artistRepository.save(artist);
     }
+
+    /*6 - Suppression d'un artiste*/
+
+    @RequestMapping (method = RequestMethod.DELETE, value = "/{id}")
+    //@ResponseStatus(HttpStatus.NO_CONTENT)
+    public void  deleteArtist(
+            @PathVariable("id") Long idArtist)
+    {
+        Optional<Artist> a = artistRepository.findById(idArtist);
+        if (a.isPresent()){
+           artistRepository.deleteById(idArtist);
+        }
+        throw new EntityNotFoundException("L'artiste avec l'id : "+ idArtist +"n'existe plus ! ");
+}
 }
