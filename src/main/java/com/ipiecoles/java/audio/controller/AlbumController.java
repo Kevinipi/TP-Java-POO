@@ -22,6 +22,16 @@ public class AlbumController {
     @Autowired
     private  ArtistRepository artistRepository;
 
+    /*8 - Ajout d'un album*/
+
+    @RequestMapping(method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public Album insertAlbum (
+        @RequestBody Album album
+    ){
+    return albumRepository.save(album);
+    }
+
     /*8 - Suppression d'un album*/
 
     @RequestMapping(method = RequestMethod.DELETE, value = "/{id}")
