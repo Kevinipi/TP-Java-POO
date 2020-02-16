@@ -39,7 +39,7 @@ public class ArtistController {
         if (a.isPresent()){
             return a.get();
         }
-        throw new EntityNotFoundException("L'artiste avec l'id : "+ id +"n'existe pas ! ");
+        throw new EntityNotFoundException("L'artiste avec l'id : "+ id +"n'existe pas ou à été supprimé ! ");
     }
 
     /*2 - Rechercher un artist par son nom*/
@@ -108,9 +108,10 @@ public class ArtistController {
     /*6 - Suppression d'un artiste*/
 
     @RequestMapping (method = RequestMethod.DELETE, value = "/{id}")
-    //@ResponseStatus(HttpStatus.NO_CONTENT)
-    public void  deleteArtist(
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public @ResponseBody void  deleteArtist(
             @PathVariable("id") Long id)
+
     {
         artistRepository.deleteById(id);
 }
