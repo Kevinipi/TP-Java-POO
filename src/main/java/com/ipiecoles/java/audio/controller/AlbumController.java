@@ -1,6 +1,5 @@
 package com.ipiecoles.java.audio.controller;
 
-import antlr.debug.SemanticPredicateListener;
 import com.ipiecoles.java.audio.model.Album;
 import com.ipiecoles.java.audio.model.Artist;
 import com.ipiecoles.java.audio.repository.AlbumRepository;
@@ -8,8 +7,6 @@ import com.ipiecoles.java.audio.repository.ArtistRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Optional;
 
 
 @RestController
@@ -22,14 +19,14 @@ public class AlbumController {
     @Autowired
     private  ArtistRepository artistRepository;
 
-    /*8 - Ajout d'un album*/
+    /*7 - Ajout d'un album*/
 
     @RequestMapping(method = RequestMethod.POST)
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public Album insertAlbum (
+    @ResponseStatus(HttpStatus.CREATED)
+    public @ResponseBody Album addAlbum (
         @RequestBody Album album
     ){
-    return albumRepository.save(album);
+        return albumRepository.save(album);
     }
 
     /*8 - Suppression d'un album*/
