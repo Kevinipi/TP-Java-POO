@@ -15,6 +15,7 @@ import java.util.Set;
 public class Artist {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 
+   // @JoinColumn(name = "artistId", updatable = false)
     private Long id;
 
     private String name;

@@ -28,7 +28,7 @@ public class GlobalExceptionHandler {
         return illegalArgumentException.getMessage();
     }
 
-/* Error 409 Exception*/
+/* Error  Exception*/
     @ExceptionHandler (DataIntegrityViolationException.class)
     @ResponseStatus(HttpStatus.CONFLICT)
     public String dataError (

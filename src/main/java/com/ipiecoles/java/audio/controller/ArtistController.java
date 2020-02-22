@@ -20,7 +20,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/artists")
-public class ArtistController {
+public abstract class ArtistController {
 
     @Autowired
     private AlbumRepository albumRepository;
@@ -83,16 +83,13 @@ public class ArtistController {
     @RequestMapping(method = RequestMethod.POST,
                     consumes = MediaType.APPLICATION_JSON_VALUE,
                     produces = MediaType.APPLICATION_JSON_VALUE)
-        public Artist dataError (
+    @ResponseStatus(HttpStatus.CREATED)
+        public Artist createArtist (
                 @RequestBody Artist artist
-    ){
+    )throws DataIntegrityViolationException{
         List<Artist> listArtist = artistRepository.findByName("");
 
-            //throw new DataIntegrityViolationException("L'artist "+ artist + "existe déjà !" );
-       if(artist == listArtist) {
-           throw new DataIntegrityViolationException("Le nom saisie existe déjà");
-       }
-        return artistRepository.save(artist);
+        return this.artistRepository.save(artist);
     }
 
     /* 5 - Modification d'un artiste */
