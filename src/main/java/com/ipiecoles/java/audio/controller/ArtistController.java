@@ -89,7 +89,7 @@ public class  ArtistController {
     ){
         Optional<Artist> a = artistRepository.findByName(artist.getName());
         if(a.isPresent()){
-            throw new DataIntegrityViolationException("L'artiste : " + artist + "éxiste déjà ! ");
+            throw new DataIntegrityViolationException("L'artiste : " + artist.getName() + "éxiste déjà ! ");
         }
         return artistRepository.save(artist);
     }

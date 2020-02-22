@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.AbstractList;
 import java.util.Optional;
 
 
@@ -29,16 +30,18 @@ public class AlbumController {
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
-    public Album createAlbum (@RequestBody Album album, @RequestParam("id") Long id) {
+    public Album createAlbum (@RequestBody Album album) {
 
-        Optional<Artist> artistId = artistRepository.findById(id);
+        Optional<Album> artistId = albumRepository.findByartistId(album.getId());
         //Optional<Artist> a = artistRepository.findById(id);
 
-       if (album.getId().equals(artistId)){
-           throw new DataIntegrityViolationException("l'album : "+ album +"existe déjà !");
+       if (artistId.equals(null)){
+
+           throw new DataIntegrityViolationException("l'album : "+ album.getTitle() +"existe déjà !");
        }
         return albumRepository.save(album);
     };
+
     /*8 - Suppression d'un album*/
 
     @RequestMapping(method = RequestMethod.DELETE, value = "/{id}")

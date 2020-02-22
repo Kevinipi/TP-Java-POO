@@ -28,6 +28,8 @@ public interface AlbumRepository extends JpaRepository<Album, Long> {
 
     Optional<Album> findById(Long id);
 
+    Optional<Album> findByartistId(Long artistId);
+
     //Album createAlbum(Album album);
 
 
