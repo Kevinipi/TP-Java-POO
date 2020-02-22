@@ -20,7 +20,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/artists")
-public abstract class ArtistController {
+public class  ArtistController {
 
     @Autowired
     private AlbumRepository albumRepository;
@@ -34,28 +34,28 @@ public abstract class ArtistController {
     @RequestMapping(method = RequestMethod.GET, value = "/{id}")
     public Artist getArtistId(
             @PathVariable("id") Long id
-    ){
+    ) {
         Optional<Artist> a = artistRepository.findById(id);
-        if (a.isPresent()){
+        if (a.isPresent()) {
             return a.get();
         }
-        throw new EntityNotFoundException("L'artiste avec l'id : "+ id +"n'existe pas ou à été supprimé ! ");
+        throw new EntityNotFoundException("L'artiste avec l'id : " + id + "n'existe pas ou à été supprimé ! ");
     }
 
     /*2 - Rechercher un artist par son nom*/
 
     @RequestMapping(method = RequestMethod.GET, params = "name")
-    public Page<Artist> getNameOfArtist (
+    public Page<Artist> getNameOfArtist(
             @RequestParam("name") String name,
-        //@PathVariable("name") String name,
-        @RequestParam("page")Integer page,
-        @RequestParam("size") Integer size,
-        @RequestParam("sortProperty") String sortProperty,
-        @RequestParam("sortDirection") Sort.Direction sortDirection
-    ){
-        Page<Artist> artists =  artistRepository.findByNameContaining(name, PageRequest.of(page, size, sortDirection, sortProperty));
+            //@PathVariable("name") String name,
+            @RequestParam("page") Integer page,
+            @RequestParam("size") Integer size,
+            @RequestParam("sortProperty") String sortProperty,
+            @RequestParam("sortDirection") Sort.Direction sortDirection
+    ) {
+        Page<Artist> artists = artistRepository.findByNameContaining(name, PageRequest.of(page, size, sortDirection, sortProperty));
 
-        if(size < 1 || size > 50){ //permet que si un attaquant veux faire tomber notre site en augmentant la taille du nombre de page il ne pourra pas
+        if (size < 1 || size > 50) { //permet que si un attaquant veux faire tomber notre site en augmentant la taille du nombre de page il ne pourra pas
             throw new IllegalArgumentException("Le nombres d'élements est trop important ! Loupé ");
         }
         return artists;
@@ -64,15 +64,15 @@ public abstract class ArtistController {
     /*  3. Listes des artistes + Exceptions */
 
     @RequestMapping(method = RequestMethod.GET)
-        public Page<Artist> getArtistList (
-                @RequestParam("page")Integer page,
-                @RequestParam("size") Integer size,
-                @RequestParam("sortDirection") Sort.Direction sortDirection,
-                @RequestParam("sortProperty") String name
-    ){
+    public Page<Artist> getArtistList(
+            @RequestParam("page") Integer page,
+            @RequestParam("size") Integer size,
+            @RequestParam("sortDirection") Sort.Direction sortDirection,
+            @RequestParam("sortProperty") String name
+    ) {
         Page<Artist> artists = artistRepository.findAll(PageRequest.of(page, size, sortDirection, name));
 
-        if (size < 1 || size > 50){
+        if (size < 1 || size > 50) {
             throw new IllegalArgumentException("Le nombres d'élements est trop important ! Loupé ");
         }
         return artists;
@@ -95,21 +95,19 @@ public abstract class ArtistController {
     /* 5 - Modification d'un artiste */
 
     @RequestMapping(method = RequestMethod.PUT, value = "/{id}")
-    public Artist modifArtist (
-        @PathVariable("id") Long idArtist,
-        @RequestBody Artist artist)
-    {
+    public Artist modifArtist(
+            @PathVariable("id") Long idArtist,
+            @RequestBody Artist artist) {
         return artistRepository.save(artist);
     }
 
     /*6 - Suppression d'un artiste*/
 
-    @RequestMapping (method = RequestMethod.DELETE, value = "/{id}")
+    @RequestMapping(method = RequestMethod.DELETE, value = "/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public @ResponseBody void  deleteArtist(
-            @PathVariable("id") Long id)
-
-    {
+    public @ResponseBody
+    void deleteArtist(
+            @PathVariable("id") Long id) {
         artistRepository.deleteById(id);
-}
+    }
 }

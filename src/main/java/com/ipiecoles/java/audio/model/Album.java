@@ -20,7 +20,7 @@ public class Album {
     /* Constructor */
 
     public Album() {
-        super();
+       // super();
     }
 
     /* End Constructor */

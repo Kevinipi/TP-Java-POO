@@ -25,7 +25,7 @@ public class AlbumController {
     @RequestMapping(method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseStatus(HttpStatus.CREATED)
+    //@ResponseStatus(HttpStatus.CREATED)
     public Album createAlbum (@RequestBody Album album)throws DataIntegrityViolationException {
 
         return this.albumRepository.save(album);

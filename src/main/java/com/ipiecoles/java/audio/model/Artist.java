@@ -14,8 +14,6 @@ import java.util.Set;
 
 public class Artist {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-
-   // @JoinColumn(name = "artistId", updatable = false)
     private Long id;
 
     private String name;
@@ -58,19 +56,4 @@ public class Artist {
     }
     //End Constructor
 
-/*
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Artist artist = (Artist) o;
-        return Objects.equals(artistid, artist.artistid) &&
-                Objects.equals(name, artist.name);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(artistid, name);
-    }
-*/
 }
