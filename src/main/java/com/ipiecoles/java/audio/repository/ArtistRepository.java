@@ -1,16 +1,11 @@
 package com.ipiecoles.java.audio.repository;
 
 import com.ipiecoles.java.audio.model.Artist;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.bind.annotation.GetMapping;
 
-import java.util.List;
 import java.util.Optional;
 
 
@@ -20,11 +15,13 @@ public interface ArtistRepository extends JpaRepository<Artist, Long> {
 
     Page<Artist> findByNameContaining(String name, Pageable pageable);
 
-    List<Artist> findByName(String name);
+    Optional<Artist> findByName(String name);
 
     //void deleteById(Long id);
 
     void deleteById(Integer id);
+
+//    Optional<Artist> findById(String s);
 
     //Page<Artist> findAllArtists(String name, PageRequest of);
 

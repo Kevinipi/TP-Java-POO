@@ -78,7 +78,7 @@ public class  ArtistController {
         return artists;
     }
 
-    /*4. Création d’un artiste + Exception 409 (à finir)*/
+    /*4. Création d’un artiste + Exception 409 */
 
     @RequestMapping(method = RequestMethod.POST,
                     consumes = MediaType.APPLICATION_JSON_VALUE,
@@ -86,10 +86,12 @@ public class  ArtistController {
     @ResponseStatus(HttpStatus.CREATED)
         public Artist createArtist (
                 @RequestBody Artist artist
-    )throws DataIntegrityViolationException{
-        List<Artist> listArtist = artistRepository.findByName("");
-
-        return this.artistRepository.save(artist);
+    ){
+        Optional<Artist> a = artistRepository.findByName(artist.getName());
+        if(a.isPresent()){
+            throw new DataIntegrityViolationException("L'artiste : " + artist + "éxiste déjà ! ");
+        }
+        return artistRepository.save(artist);
     }
 
     /* 5 - Modification d'un artiste */
