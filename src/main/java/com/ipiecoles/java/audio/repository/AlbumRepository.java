@@ -22,13 +22,15 @@ public interface AlbumRepository extends JpaRepository<Album, Long> {
     //Iterable<Album> findAll ();
     Album findTitleById(Long id);
 
-    List<Album> findByTitle(String title);
+    Optional<Album> findByTitle(String title);
 
     List<Album> findAllById(Long id);
 
     Optional<Album> findById(Long id);
 
     Optional<Album> findByartistId(Long artistId);
+
+    //List<Album> findTitle(String s);
 
     //Album createAlbum(Album album);
 

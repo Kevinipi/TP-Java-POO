@@ -15,14 +15,17 @@ public class Album {
 
     @ManyToOne
     @JoinColumn(name="artistId")
-    private Artist artistId;
+    private Artist artist;
 
     /* Constructor */
 
-    public Album() {
-       // super();
-    }
+    public Album() {}
 
+    public Album(Long id, String title, Artist artist) {
+        this.id = id;
+        this.title = title;
+        this.artist = artist;
+    }
     /* End Constructor */
 
 
@@ -44,12 +47,12 @@ public class Album {
         this.title = title;
     }
 
-    public Artist getArtistId() {
-        return artistId;
+    public Artist getArtist() {
+        return artist;
     }
 
-    public void setArtistId(Artist artistId) {
-        this.artistId = artistId;
+    public void setArtist(Artist artist) {
+        this.artist = artist;
     }
 
     /* End Getter and Setter */

@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -18,21 +19,23 @@ public class Artist {
 
     private String name;
 
+    //Permet de dire qu'un artiste à plusieur album
+    @OneToMany(mappedBy = "artist")
+    @JsonIgnoreProperties("artist") //Evite la boucle infinie
+    private List<Album> albums;
+
     //Contructor
 
-    public Artist() {
-
+    public Artist(Long id, String name, List<Album> albums) {
+        this.id = id;
+        this.name = name;
+        this.albums = albums;
     }
 
+    public Artist() {
+    }
     //Getter and Setter
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 
     public Long getId() {
         return id;
@@ -42,18 +45,22 @@ public class Artist {
         this.id = id;
     }
 
-    //Permet de dire qu'un artiste à plusieur album
-    @OneToMany(mappedBy = "artistId")
-    @JsonIgnoreProperties("artistId") //Evite la boucle infinie
-    private Set<Album> albums = new HashSet<>();
+    public String getName() {
+        return name;
+    }
 
-    public Set<Album> getAlbums() {
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public List<Album> getAlbums() {
         return albums;
     }
 
-    public void setAlbums(Set<Album> albums) {
+    public void setAlbums(List<Album> albums) {
         this.albums = albums;
     }
+
     //End Constructor
 
 }
