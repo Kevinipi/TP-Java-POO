@@ -3,6 +3,7 @@ package com.ipiecoles.java.audio.controller;
 import com.ipiecoles.java.audio.model.Artist;
 import com.ipiecoles.java.audio.repository.AlbumRepository;
 import com.ipiecoles.java.audio.repository.ArtistRepository;
+import com.ipiecoles.java.audio.security.ConflictException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
@@ -86,10 +87,10 @@ public class  ArtistController {
     @ResponseStatus(HttpStatus.CREATED)
         public Artist createArtist (
                 @RequestBody Artist artist
-    ){
+    )throws ConflictException {
         Optional<Artist> a = artistRepository.findByName(artist.getName());
         if(a.isPresent()){
-            throw new DataIntegrityViolationException("L'artiste : " + artist.getName() + "éxiste déjà ! ");
+            throw new ConflictException("L'artiste : " + artist.getName() + "éxiste déjà ! ");
         }
         return artistRepository.save(artist);
     }

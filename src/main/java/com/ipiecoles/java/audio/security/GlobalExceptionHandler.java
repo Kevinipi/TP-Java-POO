@@ -29,13 +29,15 @@ public class GlobalExceptionHandler {
     }
 
 /* Error  Exception*/
+    /*
     @ExceptionHandler (DataIntegrityViolationException.class)
-    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @ResponseStatus(HttpStatus.CONFLICT)
     public String dataError (
             DataIntegrityViolationException dataIntegrityViolationException) {
                 return dataIntegrityViolationException.getMessage();
     }
-
+     */
+    
 /*Error 409 Exception*/
     @ExceptionHandler (ConflictException.class)
     @ResponseStatus(HttpStatus.CONFLICT)
