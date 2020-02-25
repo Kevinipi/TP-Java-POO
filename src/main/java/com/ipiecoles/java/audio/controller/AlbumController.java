@@ -28,17 +28,14 @@ public class AlbumController {
     /*7 - Ajout d'un album + Exceptions*/
 
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE, value="")
-
     public Album addAlbum (
             @RequestBody Album album
     )throws ConflictException{
-        return albumRepository.save(album);
-        /*
-       Optional<Album> albumTitle = albumRepository.findByTitle(album.getTitle());
-        if(albumTitle != null){
+      // Optional<Album> albumTitle = albumRepository.findByTitle(title);
+        if(albumRepository.existsByTitle(album.getTitle()) == true){
             throw new ConflictException("L'artiste : " + album.getTitle() + "éxiste déjà ! ");
         }
-         */
+        return albumRepository.save(album);
     }
 
     /*8 - Suppression d'un album*/
