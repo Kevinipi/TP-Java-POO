@@ -17,28 +17,5 @@ public interface ArtistRepository extends JpaRepository<Artist, Long> {
 
     Optional<Artist> findByName(String name);
 
-    //void deleteById(Long id);
-
     void deleteById(Integer id);
-
-//    Optional<Artist> findById(String s);
-
-    //Page<Artist> findAllArtists(String name, PageRequest of);
-
-    //Object findAll(String name, PageRequest of);
-
-    //Page<Artist> findByNameOrderByNameAsc(Pageable pageable);
-
-   // Page<Artist> findByNameOrderByNameAsc(PageRequest of);
-
-/**
- * @return Ajouter une méthode permettant de récupérer de manière paginée les artistes dont le nom contient une chaine
- * de caractère sans prendre en compte la casse.
- */
-    //Artist findByArtistidAndName (Integer artistid, String name);
-    // Page<Artist> findByNameContainingStringAndIgnoreCase(String Name, Pageable pageable);
-
-    //Page<Artist> findAll(Pageable pageable);
-    
-    
 }

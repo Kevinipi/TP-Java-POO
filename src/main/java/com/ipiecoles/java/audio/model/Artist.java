@@ -24,7 +24,9 @@ public class Artist {
     @JsonIgnoreProperties("artist") //Evite la boucle infinie
     private List<Album> albums;
 
-    //Contructor
+    /**
+     * Begin Constructor
+     */
 
     public Artist(Long id, String name, List<Album> albums) {
         this.id = id;
@@ -34,8 +36,13 @@ public class Artist {
 
     public Artist() {
     }
-    //Getter and Setter
+    /**
+     * End Constructor
+     */
 
+    /**
+     * Begin Getter and Setter
+     */
 
     public Long getId() {
         return id;
@@ -61,6 +68,7 @@ public class Artist {
         this.albums = albums;
     }
 
-    //End Constructor
-
+    /**
+     * End Getter and Setter
+     */
 }

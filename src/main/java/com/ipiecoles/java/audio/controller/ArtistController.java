@@ -30,7 +30,9 @@ public class  ArtistController {
     private ArtistRepository artistRepository;
 
 
-    /*1 - Afficher un artiste, puis erreur 404*/
+    /**
+     * 1 - Afficher un artiste, puis erreur 404
+     */
 
     @RequestMapping(method = RequestMethod.GET, value = "/{id}")
     public Artist getArtistId(
@@ -43,7 +45,9 @@ public class  ArtistController {
         throw new EntityNotFoundException("L'artiste avec l'id : " + id + "n'existe pas ou à été supprimé ! ");
     }
 
-    /*2 - Rechercher un artist par son nom*/
+    /**
+     * 2 - Rechercher un artist par son nom
+     */
 
     @RequestMapping(method = RequestMethod.GET, params = "name")
     public Page<Artist> getNameOfArtist(
@@ -53,7 +57,7 @@ public class  ArtistController {
             @RequestParam("size") Integer size,
             @RequestParam("sortProperty") String sortProperty,
             @RequestParam("sortDirection") Sort.Direction sortDirection
-    ) {
+    ) throws IllegalArgumentException{
         Page<Artist> artists = artistRepository.findByNameContaining(name, PageRequest.of(page, size, sortDirection, sortProperty));
 
         if (size < 1 || size > 50) { //permet que si un attaquant veux faire tomber notre site en augmentant la taille du nombre de page il ne pourra pas
@@ -62,7 +66,9 @@ public class  ArtistController {
         return artists;
     }
 
-    /*  3. Listes des artistes + Exceptions */
+    /**
+     * 3. Listes des artistes + Exceptions
+     */
 
     @RequestMapping(method = RequestMethod.GET)
     public Page<Artist> getArtistList(
@@ -74,12 +80,14 @@ public class  ArtistController {
         Page<Artist> artists = artistRepository.findAll(PageRequest.of(page, size, sortDirection, name));
 
         if (size < 1 || size > 50) {
-            throw new IllegalArgumentException("Le nombres d'élements est trop important ! Loupé ");
+            throw new IllegalArgumentException("La taille de la page demandé est trop important ! ");
         }
         return artists;
     }
 
-    /*4. Création d’un artiste + Exception 409 */
+    /**
+     * 4. Création d’un artiste + Exception 409
+     */
 
     @RequestMapping(method = RequestMethod.POST,
                     consumes = MediaType.APPLICATION_JSON_VALUE,
@@ -90,12 +98,14 @@ public class  ArtistController {
     )throws ConflictException {
         Optional<Artist> a = artistRepository.findByName(artist.getName());
         if(a.isPresent()){
-            throw new ConflictException("L'artiste : " + artist.getName() + "éxiste déjà ! ");
+            throw new ConflictException("L'artiste : " + artist.getName() + " éxiste déjà ! ");
         }
         return artistRepository.save(artist);
     }
 
-    /* 5 - Modification d'un artiste */
+    /**
+     *  5 - Modification d'un artiste
+     */
 
     @RequestMapping(method = RequestMethod.PUT, value = "/{id}")
     public Artist modifArtist(
@@ -104,7 +114,9 @@ public class  ArtistController {
         return artistRepository.save(artist);
     }
 
-    /*6 - Suppression d'un artiste*/
+    /**
+     * 6 - Suppression d'un artiste
+     */
 
     @RequestMapping(method = RequestMethod.DELETE, value = "/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)

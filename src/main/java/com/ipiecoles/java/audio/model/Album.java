@@ -17,7 +17,9 @@ public class Album {
     @JoinColumn(name="artistId")
     private Artist artist;
 
-    /* Constructor */
+    /**
+     *  Begin Constructor
+     */
 
     public Album() {}
 
@@ -26,10 +28,14 @@ public class Album {
         this.title = title;
         this.artist = artist;
     }
-    /* End Constructor */
+    /**
+     *  End Constructor
+     */
 
 
-    /* Getter and Setter */
+    /**
+     *  Begin Getter and Setter
+     */
 
     public Long getId() {
         return id;
@@ -55,6 +61,8 @@ public class Album {
         this.artist = artist;
     }
 
-    /* End Getter and Setter */
+    /**
+     * End Getter and Setter
+     */
 }
 

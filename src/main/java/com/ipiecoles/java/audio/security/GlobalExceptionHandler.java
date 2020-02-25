@@ -28,16 +28,6 @@ public class GlobalExceptionHandler {
         return illegalArgumentException.getMessage();
     }
 
-/* Error  Exception*/
-    /*
-    @ExceptionHandler (DataIntegrityViolationException.class)
-    @ResponseStatus(HttpStatus.CONFLICT)
-    public String dataError (
-            DataIntegrityViolationException dataIntegrityViolationException) {
-                return dataIntegrityViolationException.getMessage();
-    }
-     */
-    
 /*Error 409 Exception*/
     @ExceptionHandler (ConflictException.class)
     @ResponseStatus(HttpStatus.CONFLICT)

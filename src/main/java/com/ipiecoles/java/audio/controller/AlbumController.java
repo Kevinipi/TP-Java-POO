@@ -25,20 +25,23 @@ public class AlbumController {
     @Autowired
     private  ArtistRepository artistRepository;
 
-    /*7 - Ajout d'un album + Exceptions*/
+    /**
+     * 7 - Ajout d'un album + Exceptions
+     */
 
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE, value="")
     public Album addAlbum (
             @RequestBody Album album
     )throws ConflictException{
-      // Optional<Album> albumTitle = albumRepository.findByTitle(title);
         if(albumRepository.existsByTitle(album.getTitle()) == true){
-            throw new ConflictException("L'artiste : " + album.getTitle() + "éxiste déjà ! ");
+            throw new ConflictException("L'artiste : " + album.getTitle() + " éxiste déjà ! ");
         }
         return albumRepository.save(album);
     }
 
-    /*8 - Suppression d'un album*/
+    /**
+     * 8 - Suppression d'un album
+     */
 
     @RequestMapping(method = RequestMethod.DELETE, value = "/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
