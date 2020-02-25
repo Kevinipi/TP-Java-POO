@@ -122,7 +122,13 @@ public class  ArtistController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public @ResponseBody
     void deleteArtist(
-            @PathVariable("id") Long id) {
+            @PathVariable("id") Long id) throws IllegalArgumentException {
+        Optional<Artist> a = artistRepository.findById(id);
+
+        Artist artist = a.get();
+        if(!artist.getAlbums().isEmpty()){
+            throw new IllegalArgumentException("Pour supprimer un artiste, veuillez d'abord supprimer le ou les albums");
+        }
         artistRepository.deleteById(id);
     }
 }
